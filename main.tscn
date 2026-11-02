@@ -1,0 +1,126 @@
+[gd_scene load_steps=8 format=3 uid="uid://mainscene"]
+
+[ext_resource type="SpriteFrames" path="res://assets/rifleman_frames.tres" id="1_frames"]
+[ext_resource type="Script" path="res://player.gd" id="2_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
+size = Vector2(3000, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plat1"]
+size = Vector2(300, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plat2"]
+size = Vector2(250, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plat3"]
+size = Vector2(200, 20)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_player"]
+radius = 16.0
+height = 48.0
+
+[node name="Main" type="Node2D"]
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(0, 500)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_floor")
+
+[node name="ColorRect" type="ColorRect" parent="Floor"]
+offset_left = -1500.0
+offset_top = -20.0
+offset_right = 1500.0
+offset_bottom = 20.0
+color = Color(0.4, 0.3, 0.2, 1)
+
+[node name="Platform1" type="StaticBody2D" parent="."]
+position = Vector2(300, 380)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform1"]
+shape = SubResource("RectangleShape2D_plat1")
+
+[node name="ColorRect" type="ColorRect" parent="Platform1"]
+offset_left = -150.0
+offset_top = -10.0
+offset_right = 150.0
+offset_bottom = 10.0
+color = Color(0.3, 0.5, 0.3, 1)
+
+[node name="Platform2" type="StaticBody2D" parent="."]
+position = Vector2(-250, 300)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
+shape = SubResource("RectangleShape2D_plat2")
+
+[node name="ColorRect" type="ColorRect" parent="Platform2"]
+offset_left = -125.0
+offset_top = -10.0
+offset_right = 125.0
+offset_bottom = 10.0
+color = Color(0.3, 0.5, 0.3, 1)
+
+[node name="Platform3" type="StaticBody2D" parent="."]
+position = Vector2(500, 220)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform3"]
+shape = SubResource("RectangleShape2D_plat3")
+
+[node name="ColorRect" type="ColorRect" parent="Platform3"]
+offset_left = -100.0
+offset_top = -10.0
+offset_right = 100.0
+offset_bottom = 10.0
+color = Color(0.3, 0.5, 0.3, 1)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(0, 456)
+script = ExtResource("2_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_player")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = ExtResource("1_frames")
+animation = &"idle_e"
+scale = Vector2(2, 2)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Controls" type="VBoxContainer" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -180.0
+offset_right = 280.0
+offset_bottom = -20.0
+
+[node name="Title" type="Label" parent="UI/Controls"]
+text = "KONTROLLER"
+horizontal_alignment = 1
+
+[node name="Move" type="Label" parent="UI/Controls"]
+text = "A / D  →  Hareket (Sol/Sag)"
+
+[node name="Jump" type="Label" parent="UI/Controls"]
+text = "Space / W / ↑  →  Zipla"
+
+[node name="Attack" type="Label" parent="UI/Controls"]
+text = "Sol Mouse Click  →  Saldiri"
+
+[node name="Crouch" type="Label" parent="UI/Controls"]
+text = "Ctrl  →  Egil"
+
+[node name="Info" type="Label" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -280.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 60.0
+text = "Rifleman - Test Sahnesi"
+horizontal_alignment = 2
